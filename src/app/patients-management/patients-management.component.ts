@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Patient } from '../data/definitions';
 import { Router } from '@angular/router';
 import { patient } from '../data/patients';
@@ -11,7 +11,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   templateUrl: './patients-management.component.html',
   styleUrls: ['./patients-management.component.css'],
 })
-export class PatientsManagementComponent implements AfterViewInit {
+export class PatientsManagementComponent implements AfterViewInit, OnInit {
   public displayedColumns: string[] = [
     'imię',
     'nazwisko',
@@ -21,10 +21,26 @@ export class PatientsManagementComponent implements AfterViewInit {
     'ulica',
     'nr domu',
   ];
-  public patientsToDisplay: Array<Patient> = patient;
+
+  @Input() public preferenceOptions!: Array<string>;
+  public patient: Array<Patient> = patient;
   public dataSource = new MatTableDataSource(patient);
+  public name = '';
+  public surname = '';
+  public pesel = '';
+  public city = '';
+  public postalCode = '';
+  public street = '';
+  public homeNumber = '';
+  public projects = '';
+  public research = '';
+  public consent = false;
+
+  @Output() submit = new EventEmitter<Patient>();
 
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {}
+  ngOnInit(): void {}
+
   public goToSummary() {
     this._router.navigate(['/summary']);
   }
@@ -51,4 +67,30 @@ export class PatientsManagementComponent implements AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-}
+  public onSubmit(patient: Array<Patient>) {
+      this.submit.emit({
+      name : this.name,
+      surname : this.surname,
+      pesel : this.pesel,
+      city : this.city,
+      postalCode : this.postalCode,
+      street : this.street,
+      homeNumber : this.homeNumber,
+      projects : this.projects,
+      research : this.research,
+      consent : this.consent})
+      this.name = '',
+      this.surname = '',
+      this.pesel = '',
+      this.city = '',
+      this.postalCode = '',
+      this.street = '',
+      this.homeNumber = '',
+      this.projects = '',
+      this.research = '',
+      this.consent = false;
+    }
+  };
+  
+
+  

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from "@angular/router";
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { SummaryComponent } from './summary/summary.component';
@@ -12,6 +13,7 @@ import { ResearchCommissioningComponent } from './research-commissioning/researc
 import { ResearchResultsComponent } from './research-results/research-results.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,13 @@ import { ResearchResultsComponent } from './research-results/research-results.co
     PatientsManagementComponent,
     ProjectsManagementComponent,
     ResearchCommissioningComponent,
-    ResearchResultsComponent
+    ResearchResultsComponent,
   ],
   imports: [
     BrowserModule,
     MatSortModule,
     MatTableModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'summary', component: SummaryComponent },
       { path: 'patients-management', component: PatientsManagementComponent },
