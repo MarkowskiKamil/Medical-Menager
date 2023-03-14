@@ -1,33 +1,52 @@
 <div>
   <ul>
-    <li><a>Zarządzanie pacjentami</a></li>
-    <li><a>Zarządzanie projektami</a></li>
-    <li><a>Zleć badanie</a></li>
-    <li><a>Wyniki badań</a></li>
-    <li><a>Podsumowanie</a></li>
+    <li><a (click)="goToPatientsManagement()">Zarządzanie pacjentami</a></li>
+    <li><a (click)="goToProjectsManagement()">Zarządzanie projektami</a></li>
+    <li><a (click)="goToResearchCommisioning()">Zleć badanie</a></li>
+    <li><a (click)="goToResearchResults()">Wyniki badań</a></li>
+    <li><a (click)="goToSummary()">Podsumowanie</a></li>
   </ul>
 </div>
 
 <div>
-  <table>
-    <tr>
-      <td>Imię</td>
-      <td>Nazwisko</td>
-      <td>Pesel</td>
-      <td>Miejscowość</td>
-      <td>Kod Pocztowy</td>
-      <td>Ulica</td>
-      <td>Nr domu</td>
-    </tr>
-    <tr>
-      <td>{{ patients.name }}</td>
-      <td>{{ patients.surname }}</td>
-      <td>{{ patients.pesel }}</td>
-      <td>{{ patients.city }}</td>
-      <td>{{ patients.postalCode }}</td>
-      <td>{{ patients.street }}</td>
-      <td>{{ patients.homeNumber }}</td>
-    </tr>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Imię</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef>Nazwisko</th>
+      <td mat-cell *matCellDef="let element">{{ element.surname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="pesel">
+      <th mat-header-cell *matHeaderCellDef>Pesel</th>
+      <td mat-cell *matCellDef="let element">{{ element.pesel }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>Miejscowość</th>
+      <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="postalCode">
+      <th mat-header-cell *matHeaderCellDef>Kod pocztowy</th>
+      <td mat-cell *matCellDef="let element">{{ element.postalCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef>Ulica</th>
+      <td mat-cell *matCellDef="let element">{{ element.street }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="homeNumber">
+      <th mat-header-cell *matHeaderCellDef>Nr domu</th>
+      <td mat-cell *matCellDef="let element">{{ element.homeNumber }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>
 

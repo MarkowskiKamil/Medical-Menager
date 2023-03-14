@@ -6,16 +6,16 @@ export interface Patient {
     postalCode: string;
     street: string;
     homeNumber: string;
-    projects: Project;
-    research: Research;
+    projects: string;
+    research: string;
     consent: boolean
   }
 
   export interface Project {
     id: string;
     name: string;
-    patients: Patient;
-    research: Research;
+    patients: string;
+    research: string;
   }
 
   export interface Research {
@@ -23,6 +23,6 @@ export interface Patient {
     type: string;
     status: string;
     result: string;
-    patient: Patient;
-    project: Project;
+    patient: string;
+    project: string;
   }

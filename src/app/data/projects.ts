@@ -1,0 +1,26 @@
+export const project = [
+    {
+        id: "1",
+        name: "X",
+        patients: "Patient",
+        research: "Research"
+      },
+      {
+        id: "2",
+        name: "Y",
+        patients: "Patient",
+        research: "Research"
+      },
+      {
+        id: "3",
+        name: "Z",
+        patients: "Patient",
+        research: "Research"
+      },
+      {
+        id: "4",
+        name: "Q",
+        patients: "Patient",
+        research: "Research"
+      }
+]

@@ -1,10 +1,10 @@
 <div>
   <ul>
-    <li><a>Zarządzanie pacjentami</a></li>
-    <li><a>Zarządzanie projektami</a></li>
-    <li><a>Zleć badanie</a></li>
-    <li><a>Wyniki badań</a></li>
-    <li><a>Podsumowanie</a></li>
+    <li><a (click)="goToPatientsManagement()">Zarządzanie pacjentami</a></li>
+    <li><a (click)="goToProjectsManagement()">Zarządzanie projektami</a></li>
+    <li><a (click)="goToResearchCommisioning()">Zleć badanie</a></li>
+    <li><a (click)="goToResearchResults()">Wyniki badań</a></li>
+    <li><a (click)="goToSummary()">Podsumowanie</a></li>
   </ul>
 </div>
 <div>
@@ -12,3 +12,4 @@
   <small>Ilość Projektów: {{ projectsCounter }}</small>
   <small>Ilość Badań: {{ researchCounter }}</small>
 </div>
+
