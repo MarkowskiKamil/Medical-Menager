@@ -1,32 +1,71 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { Project } from '../data/definitions';
+import { project } from '../data/projects';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-projects-management',
   templateUrl: './projects-management.component.html',
-  styleUrls: ['./projects-management.component.css']
+  styleUrls: ['./projects-management.component.css'],
 })
-export class ProjectsManagementComponent implements OnInit {
+export class ProjectsManagementComponent implements OnInit, AfterViewInit {
+  public displayedColumns: string[] = ['id', 'name', 'patients', 'research'];
+  public project: Array<Project> = project;
+  public dataSource = new MatTableDataSource(project);
+  public id = '';
+  public name = '';
+  public patients = '';
+  public research = '';
 
-  constructor(private _router: Router) { }
+  submit = new EventEmitter<Project>();
+
+  constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {}
+  ngOnInit(): void {}
 
   public goToSummary() {
-    this._router.navigate(['/summary'])
+    this._router.navigate(['/summary']);
   }
   public goToPatientsManagement() {
-    this._router.navigate(['/patients-management'])
+    this._router.navigate(['/patients-management']);
   }
   public goToProjectsManagement() {
-    this._router.navigate(['/projects-management'])
+    this._router.navigate(['/projects-management']);
   }
   public goToResearchCommisioning() {
-    this._router.navigate(['/research-commisioning'])
+    this._router.navigate(['/research-commisioning']);
   }
   public goToResearchResults() {
-    this._router.navigate(['/research-results'])
+    this._router.navigate(['/research-results']);
   }
 
-  ngOnInit(): void {
+  @ViewChild(MatSort) sort!: MatSort;
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
-
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  public add() {
+    this.project.push({
+      id: this.id,
+      name: this.name,
+      patients: this.patients,
+      research: this.research,
+    });
+    this.project = [...this.project]
+  }
 }
+ 

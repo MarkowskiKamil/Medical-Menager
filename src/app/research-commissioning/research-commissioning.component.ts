@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import { Research, Patient, Project } from '../data/definitions';
+import { research } from '../data/research';
+import { patient } from '../data/patients';
+import { project } from '../data/projects';
 
 @Component({
   selector: 'app-research-commissioning',
@@ -7,7 +11,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./research-commissioning.component.css']
 })
 export class ResearchCommissioningComponent implements OnInit {
-
+  public researchTypeOptions = ['psychotesty', 'badania moczu', 'badania krwi', 'badania kału'];
+  public patient: Array<Patient> = patient;
+  public patientsOptions: Array<Patient> = patient;
+  public project: Array<Project> = project;
+  public research: Array<Research> = research;
+  public researchData: Research = research[research.length];
+  public id = '';
+  public type = '';
+  public status = '';
+  public result = '';
+  public patientInResearch = '';
+  public projectOfResearch = '';
+  
+ 
   constructor(private _router: Router) { }
 
   public goToSummary() {
@@ -28,5 +45,16 @@ export class ResearchCommissioningComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public add() {
+    this.research.push({
+      id: this.id,
+      type: this.type,
+      status: this.status,
+      result: this.result,
+      patient: this.patientInResearch,
+      project: this.projectOfResearch
+    });
 
+    this.research = [...this.research];
+  }
 }

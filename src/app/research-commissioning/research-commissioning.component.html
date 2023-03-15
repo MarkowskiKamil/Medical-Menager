@@ -7,3 +7,30 @@
       <li><a (click)="goToSummary()">Podsumowanie</a></li>
     </ul>
   </div>
+  
+  <div class="test-form input">
+    <form #formEl #researchForm="ngForm">
+    <br/>
+    Wybierz rodzaj badania<select [(ngModel)]="type">
+      <option *ngFor="let opt of researchTypeOptions"
+              [value]="opt">{{ opt }}
+      </option>
+    </select>
+    <br/>  
+    Wybierz pacjenta<select [(ngModel)]="patient">
+      <option *ngFor="let opt of patientsOptions"
+              [value]="opt">{{ opt }}
+      </option>
+    </select>
+    <br/>  
+    Wybierz projekt <input 
+    name="project"
+    required
+    ngModel/>
+    <br/>  
+  <button
+    [disabled]="researchForm.valid === false" 
+    (click)="add()"
+    >Zleć nowe badanie</button>
+  </form>
+  </div>

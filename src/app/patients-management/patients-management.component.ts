@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit, DoCheck } from '@angular/core';
 import { Patient } from '../data/definitions';
 import { Router } from '@angular/router';
 import { patient } from '../data/patients';
@@ -11,18 +11,17 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   templateUrl: './patients-management.component.html',
   styleUrls: ['./patients-management.component.css'],
 })
-export class PatientsManagementComponent implements AfterViewInit, OnInit {
+export class PatientsManagementComponent implements AfterViewInit, OnInit, DoCheck {
   public displayedColumns: string[] = [
-    'imię',
-    'nazwisko',
+    'name',
+    'surname',
     'pesel',
-    'miasto',
-    'kod pocztowy',
-    'ulica',
-    'nr domu',
+    'city',
+    'postalCode',
+    'street',
+    'homeNumber',
   ];
 
-  @Input() public preferenceOptions!: Array<string>;
   public patient: Array<Patient> = patient;
   public dataSource = new MatTableDataSource(patient);
   public name = '';
@@ -36,10 +35,11 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit {
   public research = '';
   public consent = false;
 
-  @Output() submit = new EventEmitter<Patient>();
 
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {}
   ngOnInit(): void {}
+  ngDoCheck(): void {};
+	
 
   public goToSummary() {
     this._router.navigate(['/summary']);
@@ -67,8 +67,8 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  public onSubmit(patient: Array<Patient>) {
-      this.submit.emit({
+  public add() {
+    this.patient.push({
       name : this.name,
       surname : this.surname,
       pesel : this.pesel,
@@ -79,16 +79,7 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit {
       projects : this.projects,
       research : this.research,
       consent : this.consent})
-      this.name = '',
-      this.surname = '',
-      this.pesel = '',
-      this.city = '',
-      this.postalCode = '',
-      this.street = '',
-      this.homeNumber = '',
-      this.projects = '',
-      this.research = '',
-      this.consent = false;
+      this.patient = [...this.patient]
     }
   };
   

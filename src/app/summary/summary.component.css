@@ -1,0 +1,51 @@
+ul {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li a {
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 1.2em;
+  width: 130px;
+  height: 40px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(15, 70, 9);
+  padding: 10px 15px;
+  margin: 0px 1px 1px 0px;
+
+  border-radius: 3px;
+}
+
+li a:hover {
+  color: rgb(15, 70, 9);
+  background: white;
+}
+ 
+ table {
+     width: 80%;
+   }
+   
+   th.mat-sort-header-sorted {
+     color: black;
+   }
+ 
+ .test-form input {
+   display:block;
+   margin-bottom:10px;
+   margin-top:5px;
+ }
+
+ .summary {
+display: block;
+   float: left;
+   text-align: left;
+   font-size: 1.8em;
+   width: 220px;
+   padding: 40px;
+ }

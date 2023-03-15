@@ -7,3 +7,53 @@
       <li><a (click)="goToSummary()">Podsumowanie</a></li>
     </ul>
   </div>
+
+  <div clas="test-form input">
+    <form #formEl #projectForm="ngForm">
+    <br/>
+    Wprowadź oznaczenie nowego projektu <input 
+    name="name"
+    required
+    ngModel/>
+    <br/>  
+  <button
+    [disabled]="projectForm.valid === false" 
+    (click)="add()"
+    >Dodaj nowy projekt</button>
+  </form>
+  </div>
+
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nazwa projektu</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="patients">
+        <th mat-header-cell *matHeaderCellDef>Pacjenci biorący udział w projekcie</th>
+        <td mat-cell *matCellDef="let element">{{ element.patients }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="research">
+        <th mat-header-cell *matHeaderCellDef>Przeprowadzone badania</th>
+        <td mat-cell *matCellDef="let element">{{ element.research }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+
+  
+  
+  
+  
+
+  
