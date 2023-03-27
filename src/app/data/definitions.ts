@@ -6,16 +6,14 @@ export interface Patient {
     postalCode: string;
     street: string;
     homeNumber: string;
-    projects: string;
-    research: string;
     consent: boolean
   }
 
   export interface Project {
     id: string;
     name: string;
-    patients: string;
-    research: string;
+    patients: Array<Patient>;
+    research: Array<Research>;
   }
 
   export interface Research {

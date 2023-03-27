@@ -8,8 +8,6 @@ export const patient = [
     postalCode: "15-773",
     street: "Rzemieślnicza",
     homeNumber: "32",
-    projects: "",
-    research: "",
     consent: true
   },
   {
@@ -20,8 +18,6 @@ export const patient = [
     postalCode: "15-773",
     street: "Ogrodniczki",
     homeNumber: "77",
-    projects: "",
-    research: "",
     consent: false
   },
   {
@@ -32,8 +28,6 @@ export const patient = [
     postalCode: "19-200",
     street: "Polna",
     homeNumber: "19",
-    projects: "",
-    research: "",
     consent: false
   },
   {
@@ -44,8 +38,6 @@ export const patient = [
     postalCode: "15-766",
     street: "Łąkowa",
     homeNumber: "3",
-    projects: "",
-    research: "",
     consent: true
   },
   {
@@ -56,8 +48,6 @@ export const patient = [
     postalCode: "15-773",
     street: "Adama Mickiewicza",
     homeNumber: "64",
-    projects: "",
-    research: "",
     consent: true
   },
 
@@ -69,8 +59,6 @@ export const patient = [
     postalCode: "11-041",
     street: "Kazimierza Wielkiego",
     homeNumber: "4",
-    projects: "",
-    research: "",
     consent: false
   },
   {
@@ -81,7 +69,5 @@ export const patient = [
     postalCode: "14-202",
     street: "Jana Matejki",
     homeNumber: "9",
-    projects: "",
-    research: "",
     consent: true
   }]

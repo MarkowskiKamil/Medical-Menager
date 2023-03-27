@@ -24,6 +24,7 @@ export class ResearchCommissioningComponent implements OnInit {
   public patientInResearch = '';
   public projectOfResearch = '';
   
+  
  
   constructor(private _router: Router) { }
 
@@ -45,16 +46,11 @@ export class ResearchCommissioningComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public add() {
-    this.research.push({
-      id: this.id,
-      type: this.type,
-      status: this.status,
-      result: this.result,
-      patient: this.patientInResearch,
-      project: this.projectOfResearch
+  public add(form: any) {
+    const newResearch = ({
+      ...form.value
     });
-
-    this.research = [...this.research];
+   
+  this.research.push(form.value)
   }
 }

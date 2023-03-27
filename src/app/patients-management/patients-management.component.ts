@@ -22,24 +22,14 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit, DoChe
     'homeNumber',
   ];
 
-  public patient: Array<Patient> = patient;
+  public patients: Array<Patient> = patient;
   public dataSource = new MatTableDataSource(patient);
-  public name = '';
-  public surname = '';
-  public pesel = '';
-  public city = '';
-  public postalCode = '';
-  public street = '';
-  public homeNumber = '';
-  public projects = '';
-  public research = '';
-  public consent = false;
+
 
 
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {};
   ngDoCheck(): void {};
-	
 
   public goToSummary() {
     this._router.navigate(['/summary']);
@@ -67,21 +57,17 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit, DoChe
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  public add() {
-    this.patient.push({
-      name : this.name,
-      surname : this.surname,
-      pesel : this.pesel,
-      city : this.city,
-      postalCode : this.postalCode,
-      street : this.street,
-      homeNumber : this.homeNumber,
-      projects : this.projects,
-      research : this.research,
-      consent : this.consent})
-      this.patient = [...this.patient]
+  public add(form: any) {
+    console.log(form)
+    const newPatient: Patient = {
+      ...form.value
+      }
+      this.dataSource.data = [
+        ...this.dataSource.data,
+        newPatient
+    ];
+    this.patients.push(form.value)
     }
-  };
-  
+   
+  }
 
-  

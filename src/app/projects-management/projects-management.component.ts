@@ -23,8 +23,8 @@ export class ProjectsManagementComponent implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource(project);
   public id = '';
   public name = '';
-  public patients = '';
-  public research = '';
+  public patients = [];
+  public research = [];
 
   submit = new EventEmitter<Project>();
 
@@ -58,14 +58,15 @@ export class ProjectsManagementComponent implements OnInit, AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  public add() {
-    this.project.push({
-      id: this.id,
-      name: this.name,
-      patients: this.patients,
-      research: this.research,
-    });
-    this.project = [...this.project]
+  public addNewProject(form: any) {
+    const newProject: Project = {
+      ...form.value
+    }
+    /*this.dataSource.data = [
+      ...this.dataSource.data,
+      newProject
+  ];*/
+  this.project.push(form.value)
   }
 }
  
