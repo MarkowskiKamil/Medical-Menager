@@ -14,7 +14,9 @@
     Wprowadź oznaczenie nowego projektu <input 
     name="name"
     required
+    #nameModel="ngModel"
     ngModel/>
+    <p *ngIf= "nameModel === projectForm.form.value.name">Projekt o podanej nazwie już istnieje</p>
     <br/>  
   <button
     [disabled]="projectForm.valid === false" 
@@ -35,14 +37,9 @@
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
   
-      <ng-container matColumnDef="patients">
-        <th mat-header-cell *matHeaderCellDef>Pacjenci biorący udział w projekcie</th>
-        <td mat-cell *matCellDef="let element">{{ element.patients }}</td>
-      </ng-container>
-  
       <ng-container matColumnDef="research">
         <th mat-header-cell *matHeaderCellDef>Przeprowadzone badania</th>
-        <td mat-cell *matCellDef="let element">{{ element.research }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.research.id }}</td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

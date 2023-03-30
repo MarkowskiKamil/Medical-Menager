@@ -18,8 +18,6 @@ export class ResearchResultsComponent implements OnInit, AfterViewInit{
     'status',
     'result',
     'patient',
-    'project',
-
   ];
 
   public research: Array<Research> = research;
@@ -29,7 +27,6 @@ export class ResearchResultsComponent implements OnInit, AfterViewInit{
   public status = '';
   public result = '';
   public patient = '';
-  public project = '';
 
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) { }
 

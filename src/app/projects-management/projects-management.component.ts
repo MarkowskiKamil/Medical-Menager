@@ -6,8 +6,10 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Project } from '../data/definitions';
+import { Project, Research, Patient } from '../data/definitions';
 import { project } from '../data/projects';
+import { research } from '../data/research';
+import { patient } from '../data/patients';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -18,15 +20,11 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./projects-management.component.css'],
 })
 export class ProjectsManagementComponent implements OnInit, AfterViewInit {
-  public displayedColumns: string[] = ['id', 'name', 'patients', 'research'];
+  public displayedColumns: string[] = ['id', 'name', 'research'];
   public project: Array<Project> = project;
+  //public research: Array<Research> = research;
+  //public patient: Array<Patient> = patient;
   public dataSource = new MatTableDataSource(project);
-  public id = '';
-  public name = '';
-  public patients = [];
-  public research = [];
-
-  submit = new EventEmitter<Project>();
 
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {}
   ngOnInit(): void {}
@@ -58,15 +56,21 @@ export class ProjectsManagementComponent implements OnInit, AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+  // dodawanie zrobić z pomocą 2-way data binding ??
   public addNewProject(form: any) {
+    console.log(form);
     const newProject: Project = {
       ...form.value
     }
-    /*this.dataSource.data = [
-      ...this.dataSource.data,
-      newProject
-  ];*/
-  this.project.push(form.value)
+    if (this.project.includes(form.value.name)) {
+      console.log("Projekt o pdoanej nazwie już istnieje")
   }
+else {
+  this.dataSource.data = [
+    ...this.dataSource.data,
+    newProject
+];
+this.project.push(form.value)
+
+}}
 }
- 

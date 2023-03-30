@@ -71,3 +71,5 @@ export const patient = [
     homeNumber: "9",
     consent: true
   }]
+
+

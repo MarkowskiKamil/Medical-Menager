@@ -24,6 +24,9 @@
         ngModel
       />
       <p *ngIf="peselModel.touched && peselModel.invalid">Niewłaściwy pesel!</p>
+      <p *ngIf="peselModel === patientForm.form.value.pesel">
+        Pacjent o podanym numerze pesel już istnieje
+      </p>
       <br />
       Miejscowość <input name="city" required ngModel />
       <br />
@@ -50,7 +53,10 @@
       />
       <br />
 
-      <button [disabled]="patientForm.valid === false" (click)="add(patientForm)">
+      <button
+        [disabled]="patientForm.valid === false"
+        (click)="add(patientForm)"
+      >
         Dodaj pacjenta
       </button>
     </form>

@@ -62,11 +62,16 @@ export class PatientsManagementComponent implements AfterViewInit, OnInit, DoChe
     const newPatient: Patient = {
       ...form.value
       }
+      if (this.patients.includes(form.value.pesel)) {
+        console.log("Pacjent o podanym numerze pesel już istnieje")
+      }
+    else {
       this.dataSource.data = [
-        ...this.dataSource.data,
-        newPatient
-    ];
-    this.patients.push(form.value)
+      ...this.dataSource.data,
+      newPatient
+  ];
+  this.patients.push(form.value)}
+      
     }
    
   }

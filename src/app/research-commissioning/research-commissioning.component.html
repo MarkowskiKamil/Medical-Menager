@@ -1,36 +1,34 @@
 <div>
-    <ul>
-      <li><a (click)="goToPatientsManagement()">Zarządzanie pacjentami</a></li>
-      <li><a (click)="goToProjectsManagement()">Zarządzanie projektami</a></li>
-      <li><a (click)="goToResearchCommisioning()">Zleć badanie</a></li>
-      <li><a (click)="goToResearchResults()">Wyniki badań</a></li>
-      <li><a (click)="goToSummary()">Podsumowanie</a></li>
-    </ul>
-  </div>
-  
-  <div class="test-form input">
-    <form #formEl #researchForm="ngForm">
-    <br/>
-    Wybierz rodzaj badania<select [(ngModel)]="type">
-      <option *ngFor="let opt of researchTypeOptions"
-              [value]="opt">{{ opt }}
+  <ul>
+    <li><a (click)="goToPatientsManagement()">Zarządzanie pacjentami</a></li>
+    <li><a (click)="goToProjectsManagement()">Zarządzanie projektami</a></li>
+    <li><a (click)="goToResearchCommisioning()">Zleć badanie</a></li>
+    <li><a (click)="goToResearchResults()">Wyniki badań</a></li>
+    <li><a (click)="goToSummary()">Podsumowanie</a></li>
+  </ul>
+</div>
+
+<div class="test-form input">
+  <form #formEl #researchForm="ngForm">
+    <br />
+    Wybierz rodzaj badania<select [(ngModel)]="type" name="type">
+      <option *ngFor="let opt of researchTypeOptions" required [value]="opt">
+        {{ opt }}
       </option>
     </select>
-    <br/>  
-    Wybierz pacjenta<select [(ngModel)]="patient">
-      <option *ngFor="let opt of patientsOptions"
-              [value]="opt">{{ opt }}
+    <br />
+    Wybierz pacjenta<select [(ngModel)]="patient"name="patient">
+      <option *ngFor="let opt of patientsOptions" required [value]="opt">
+        {{ opt.name }} {{ opt.surname }}
       </option>
     </select>
-    <br/>  
-    Wybierz projekt <input 
-    name="project"
-    required
-    ngModel/>
-    <br/>  
-  <button
-    [disabled]="researchForm.valid === false" 
-    (click)="add(researchForm)"
-    >Zleć nowe badanie</button>
+
+    <br />
+    <button
+      [disabled]="researchForm.valid === false"
+      (click)="add(researchForm)"
+    >
+      Zleć nowe badanie
+    </button>
   </form>
-  </div>
+</div>
