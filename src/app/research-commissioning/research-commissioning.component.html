@@ -12,23 +12,26 @@
   <form #formEl #researchForm="ngForm">
     <br />
     Wybierz rodzaj badania<select [(ngModel)]="type" name="type">
-      <option *ngFor="let opt of researchTypeOptions" required [value]="opt">
+      <option *ngFor="let opt of researchTypeOptions" required [ngValue]="opt">
         {{ opt }}
       </option>
     </select>
     <br />
-    Wybierz pacjenta<select [(ngModel)]="patient"name="patient">
-      <option *ngFor="let opt of patientsOptions" required [value]="opt">
+    Wybierz pacjenta<select [(ngModel)]="patient" name="patient">
+      <option *ngFor="let opt of patientsOptions" required [ngValue]="opt">
         {{ opt.name }} {{ opt.surname }}
       </option>
     </select>
 
     <br />
     <button
-      [disabled]="researchForm.valid === false"
+      [disabled]="researchForm.valid === false || researchForm.value.patient.consent === false"
       (click)="add(researchForm)"
     >
       Zleć nowe badanie
     </button>
+    <p *ngIf="researchForm.value.patient.consent === false">
+      Wybrany pacjent nie ma podpisanej zgody na badania
+    </p>
   </form>
 </div>

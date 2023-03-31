@@ -25,7 +25,7 @@ export class ResearchCommissioningComponent implements OnInit {
   public type = '';
   public status = '';
   public result = '';
-  public patientInResearch: Patient = patient[0];
+  public patientInResearch: Patient = patient[patient.length];
 
   constructor(private _router: Router) {}
 
@@ -47,17 +47,18 @@ export class ResearchCommissioningComponent implements OnInit {
 
   ngOnInit(): void {}
   public add(form: any) {
+    this.patientInResearch = form.value.patient;
     console.log(form);
-    const newResearch = {
+    if (this.patientInResearch.consent = true) { 
+      const newResearch = {
       id: (this.id = research.length + 1),
       type: (this.type = form.value.type),
       status: (this.status = 'zlecone'),
       result: (this.result = ''),
-      patient: (this.patientInResearch = patient.find((patient) => patient === form.value.patient)
-        
-      ),
+      patient: form.value.patient,
     };
 
-    this.research.push(newResearch);
+    this.research.push(newResearch);}
+   
   }
 }
